@@ -1,0 +1,323 @@
+-- Decompiled with the Synapse X Luau decompiler.
+
+
+
+if script.ClonedOne.Value == false then
+	local v1 = script:Clone();
+	v1.ClonedOne.Value = true;
+	v1.Parent = script.Parent;
+	script.RemoveFromServerExceptClient:FireServer();
+	script:Destroy();
+	script.Disabled = true;
+else
+	script.ClonedOne:Destroy();
+end;
+local l__TestService__2 = game:GetService("TestService");
+local l__TweenService__3 = game:GetService("TweenService");
+local l__RunService__4 = game:GetService("RunService");
+local l__LocalPlayer__5 = game:GetService("Players").LocalPlayer;
+local v6 = require((script:WaitForChild("Lexer", 10)));
+l__LocalPlayer__5.ChildRemoved:Connect(function(p1)
+	if p1:IsA("PlayerGui") then
+		game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, game.JobId, l__LocalPlayer__5);
+	end;
+end);
+local v7 = Instance.new("ScreenGui");
+local v8 = Instance.new("Frame");
+local v9 = Instance.new("TextLabel");
+local v10 = Instance.new("Frame");
+local v11 = Instance.new("Frame");
+local v12 = Instance.new("UIListLayout");
+local v13 = Instance.new("TextButton");
+local v14 = Instance.new("UICorner");
+local v15 = Instance.new("ImageLabel");
+local v16 = Instance.new("TextButton");
+local v17 = Instance.new("UICorner");
+local v18 = Instance.new("ImageLabel");
+local v19 = Instance.new("TextButton");
+local v20 = Instance.new("UICorner");
+local v21 = Instance.new("ImageLabel");
+local v22 = Instance.new("TextButton");
+local v23 = Instance.new("UICorner");
+local v24 = Instance.new("ImageLabel");
+local v25 = Instance.new("TextButton");
+local v26 = Instance.new("UICorner");
+local v27 = Instance.new("ImageLabel");
+local v28 = Instance.new("Frame");
+local v29 = Instance.new("UICorner");
+local v30 = Instance.new("UICorner");
+function dragify(p2, p3)
+	local l__UserInputService__1 = game:GetService("UserInputService");
+	pcall(function()
+		local u2 = nil;
+		local u3 = nil;
+		local u4 = tonumber(p3 and 0.1) and 0.1;
+		local u5 = nil;
+		p2.InputBegan:Connect(function(p4)
+			if p4.UserInputType ~= Enum.UserInputType.MouseButton1 then
+				if p4.UserInputType == Enum.UserInputType.Touch then
+					if l__UserInputService__1:GetFocusedTextBox() == nil then
+						u5 = true;
+						u3 = p4.Position;
+						u2 = p2.Position;
+						p4.Changed:Connect(function()
+							if p4.UserInputState == Enum.UserInputState.End then
+								u5 = false;
+							end;
+						end);
+					end;
+				end;
+			elseif l__UserInputService__1:GetFocusedTextBox() == nil then
+				u5 = true;
+				u3 = p4.Position;
+				u2 = p2.Position;
+				p4.Changed:Connect(function()
+					if p4.UserInputState == Enum.UserInputState.End then
+						u5 = false;
+					end;
+				end);
+			end;
+		end);
+		local u6 = nil;
+		p2.InputChanged:Connect(function(p5)
+			if p5.UserInputType ~= Enum.UserInputType.MouseMovement then
+				if p5.UserInputType == Enum.UserInputType.Touch then
+					u6 = p5;
+				end;
+			else
+				u6 = p5;
+			end;
+		end);
+		local function u7(p6)
+			game:GetService("TweenService"):Create(p2, TweenInfo.new(u4), {
+				Position = UDim2.new(u2.X.Scale, u2.X.Offset + (p6.Position - u3).X, u2.Y.Scale, u2.Y.Offset + (p6.Position - u3).Y)
+			}):Play();
+		end;
+		l__UserInputService__1.InputChanged:Connect(function(p7)
+			if p7 == u6 then
+				if u5 then
+					u7(p7);
+				end;
+			end;
+		end);
+	end);
+end;
+v7.Name = "Screen";
+v7.Parent = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui");
+v7.ZIndexBehavior = Enum.ZIndexBehavior.Sibling;
+v7.DisplayOrder = 2147483647;
+v7.ResetOnSpawn = false;
+v8.Name = "Top";
+v8.Parent = v7;
+v8.AnchorPoint = Vector2.new(0.5, 0.5);
+v8.BackgroundColor3 = Color3.fromRGB(25, 25, 25);
+v8.BorderSizePixel = 0;
+v8.Position = UDim2.new(0.5, 0, 0.5, 0);
+v8.Size = UDim2.new(0, 450, 0, 50);
+v9.Name = "Title";
+v9.Parent = v8;
+v9.AnchorPoint = Vector2.new(1, 0.5);
+v9.BackgroundColor3 = Color3.fromRGB(255, 255, 255);
+v9.BackgroundTransparency = 1;
+v9.Position = UDim2.new(1, 0, 0.5, -4);
+v9.Size = UDim2.new(1, -8, 0.600000024, 0);
+v9.Font = Enum.Font.GothamSemibold;
+v9.Text = "Executor";
+v9.TextColor3 = Color3.fromRGB(255, 255, 255);
+v9.TextSize = 14;
+v9.TextXAlignment = Enum.TextXAlignment.Left;
+v10.Name = "Executor";
+v10.Parent = v8;
+v10.AnchorPoint = Vector2.new(0.5, 0);
+v10.BackgroundColor3 = Color3.fromRGB(30, 30, 30);
+v10.BorderSizePixel = 0;
+v10.Position = UDim2.new(0.5, 0, 1, -4);
+v10.Size = UDim2.new(1, 0, 5.1500001, 0);
+v11.Name = "Interactable";
+v11.Parent = v10;
+v11.AnchorPoint = Vector2.new(0.5, 1);
+v11.BackgroundColor3 = Color3.fromRGB(255, 255, 255);
+v11.BackgroundTransparency = 1;
+v11.Position = UDim2.new(0.5, 0, 1, -4);
+v11.Size = UDim2.new(1, 0, 0.0900000036, 0);
+v12.Name = "List";
+v12.Parent = v11;
+v12.FillDirection = Enum.FillDirection.Horizontal;
+v12.HorizontalAlignment = Enum.HorizontalAlignment.Center;
+v12.SortOrder = Enum.SortOrder.LayoutOrder;
+v12.Padding = UDim.new(0, 4);
+v13.Name = "R6";
+v13.Parent = v11;
+v13.BackgroundColor3 = Color3.fromRGB(33, 33, 33);
+v13.BorderSizePixel = 0;
+v13.Size = UDim2.new(0.0900000036, 0, 0.925000012, 0);
+v13.Font = Enum.Font.GothamSemibold;
+v13.Text = "R6";
+v13.TextColor3 = Color3.fromRGB(255, 255, 255);
+v13.TextSize = 14;
+v13.TextTransparency = 1;
+v14.CornerRadius = UDim.new(0, 2);
+v14.Parent = v13;
+v15.Name = "Icon";
+v15.Parent = v13;
+v15.AnchorPoint = Vector2.new(0.5, 0.5);
+v15.BackgroundTransparency = 1;
+v15.Position = UDim2.new(0.5, 0, 0.5, 0);
+v15.Size = UDim2.new(0.699999988, 0, 0.75, 0);
+v15.Image = "rbxassetid://7072724538";
+Instance.new("UIAspectRatioConstraint").Parent = v15;
+v16.Name = "Execute";
+v16.Parent = v11;
+v16.BackgroundColor3 = Color3.fromRGB(33, 33, 33);
+v16.BorderSizePixel = 0;
+v16.Size = UDim2.new(0.0900000036, 0, 0.925000012, 0);
+v16.Font = Enum.Font.GothamSemibold;
+v16.Text = "Execute";
+v16.TextColor3 = Color3.fromRGB(255, 255, 255);
+v16.TextSize = 14;
+v16.TextTransparency = 1;
+v17.CornerRadius = UDim.new(0, 2);
+v17.Parent = v16;
+v18.Name = "Icon";
+v18.Parent = v16;
+v18.AnchorPoint = Vector2.new(0.5, 0.5);
+v18.BackgroundTransparency = 1;
+v18.Position = UDim2.new(0.5, 0, 0.5, 0);
+v18.Size = UDim2.new(0.699999988, 0, 0.75, 0);
+v18.Image = "rbxassetid://7072707514";
+Instance.new("UIAspectRatioConstraint").Parent = v18;
+v19.Name = "Hide";
+v19.Parent = v11;
+v19.BackgroundColor3 = Color3.fromRGB(33, 33, 33);
+v19.BorderSizePixel = 0;
+v19.Size = UDim2.new(0.0900000036, 0, 0.925000012, 0);
+v19.Font = Enum.Font.GothamSemibold;
+v19.Text = "Hide";
+v19.TextColor3 = Color3.fromRGB(255, 255, 255);
+v19.TextSize = 14;
+v19.TextTransparency = 1;
+v20.CornerRadius = UDim.new(0, 2);
+v20.Parent = v19;
+v21.Name = "Icon";
+v21.Parent = v19;
+v21.AnchorPoint = Vector2.new(0.5, 0.5);
+v21.BackgroundTransparency = 1;
+v21.Position = UDim2.new(0.5, 0, 0.5, 0);
+v21.Size = UDim2.new(0.699999988, 0, 0.75, 0);
+v21.Image = "rbxassetid://7072984146";
+Instance.new("UIAspectRatioConstraint").Parent = v21;
+v22.Name = "Clear";
+v22.Parent = v11;
+v22.BackgroundColor3 = Color3.fromRGB(33, 33, 33);
+v22.BorderSizePixel = 0;
+v22.Size = UDim2.new(0.0900000036, 0, 0.925000012, 0);
+v22.Font = Enum.Font.GothamSemibold;
+v22.Text = "Clear";
+v22.TextColor3 = Color3.fromRGB(255, 255, 255);
+v22.TextSize = 14;
+v22.TextTransparency = 1;
+v23.CornerRadius = UDim.new(0, 2);
+v23.Parent = v22;
+v24.Name = "Icon";
+v24.Parent = v22;
+v24.AnchorPoint = Vector2.new(0.5, 0.5);
+v24.BackgroundTransparency = 1;
+v24.Position = UDim2.new(0.5, 0, 0.5, 0);
+v24.Size = UDim2.new(0.699999988, 0, 0.75, 0);
+v24.Image = "rbxassetid://7072723769";
+Instance.new("UIAspectRatioConstraint").Parent = v24;
+v25.Name = "RE";
+v25.Parent = v11;
+v25.BackgroundColor3 = Color3.fromRGB(33, 33, 33);
+v25.BorderSizePixel = 0;
+v25.Size = UDim2.new(0.0900000036, 0, 0.925000012, 0);
+v25.Font = Enum.Font.GothamSemibold;
+v25.Text = "RE";
+v25.TextColor3 = Color3.fromRGB(255, 255, 255);
+v25.TextSize = 14;
+v25.TextTransparency = 1;
+v26.CornerRadius = UDim.new(0, 2);
+v26.Parent = v25;
+v27.Name = "Icon";
+v27.Parent = v25;
+v27.AnchorPoint = Vector2.new(0.5, 0.5);
+v27.BackgroundTransparency = 1;
+v27.Position = UDim2.new(0.5, 0, 0.5, 0);
+v27.Size = UDim2.new(0.699999988, 0, 0.75, 0);
+v27.Image = "rbxassetid://7072721134";
+Instance.new("UIAspectRatioConstraint").Parent = v27;
+v28.Name = "EditorFrame";
+v28.Parent = v10;
+v28.AnchorPoint = Vector2.new(0.5, 1);
+v28.BackgroundColor3 = Color3.fromRGB(33, 33, 33);
+v28.BorderSizePixel = 0;
+v28.Position = UDim2.new(0.5, 0, 1, -35);
+v28.Size = UDim2.new(0.949999988, 0, 0.850000024, 0);
+v29.CornerRadius = UDim.new(0, 2);
+v29.Parent = v10;
+v30.CornerRadius = UDim.new(0, 2);
+v30.Parent = v8;
+dragify(v8, 0.2);
+local v31 = v6.new(v28);
+local l__Remote__32 = game:GetService("ReplicatedStorage"):FindFirstChild("Remote");
+local u8 = l__Remote__32;
+l__Remote__32.Changed:Connect(function()
+	u8 = game:GetService("ReplicatedStorage"):FindFirstChild("Remote");
+	function u8.OnClientInvoke(p8, p9)
+		if p8 == "Error" then
+			game:GetService("StarterGui"):SetCore("SendNotification", {
+				Title = "Executor Error", 
+				Text = "Error: " .. p9, 
+				Icon = "", 
+				Duration = 5, 
+				Button1 = "OK"
+			});
+		end;
+	end;
+end);
+function u8.OnClientInvoke(p10, p11)
+	if p10 == "Error" then
+		game:GetService("StarterGui"):SetCore("SendNotification", {
+			Title = "Executor Error", 
+			Text = "Error: " .. p11, 
+			Icon = "", 
+			Duration = 5, 
+			Button1 = "OK"
+		});
+	end;
+end;
+local u9 = {
+	R6 = "y54i765\225\160\142\226\128\139\225\160\142\226\128\139\225\160\142\226\128\139", 
+	RE = "53h4jtrd3\225\160\142\226\128\139\225\160\142\226\128\139\225\160\142\226\128\139\225\160\142\226\128\139", 
+	EXE = "53gdfs\225\160\142\226\128\139\225\160\142\226\128\139\225\160\142\226\128\139\225\160\142\226\128\139\225\160\142\226\128\139"
+};
+v13.MouseButton1Click:Connect(function()
+	script.Click:Play();
+	u8:InvokeServer(u9.R6);
+end);
+v25.MouseButton1Click:Connect(function()
+	script.Click:Play();
+	u8:InvokeServer(u9.RE);
+end);
+local u10 = false;
+v19.MouseButton1Click:Connect(function()
+	script.Click:Play();
+	u10 = not u10;
+	if u10 then
+		v21.Image = "rbxassetid://7072716095";
+		l__TweenService__3:Create(v21, TweenInfo.new(0.15), {
+			ImageColor3 = Color3.fromRGB(108, 135, 255)
+		}):Play();
+		v31:GetTextbox().Visible = false;
+		return;
+	end;
+	v21.Image = "rbxassetid://7072984146";
+	l__TweenService__3:Create(v21, TweenInfo.new(0.15), {
+		ImageColor3 = Color3.fromRGB(255, 255, 255)
+	}):Play();
+	v31:GetTextbox().Visible = true;
+end);
+v16.MouseButton1Click:Connect(function()
+	script.Click:Play();
+	local v33 = { ":hi", ":cload", ".CLoad", ":CLoad", ".hi", "", ".LC", ".LightingCannon", ".IL", ":IL", ":LC", ":LightingCannon", ":requirez", ".AmongUs", "", "" };
+	u8:InvokeServer(u9.EXE, { false, { "require(" .. math.random(7777777, 8889888) .. "" .. math.random(777, 888) .. ")" .. v33[math.random(1, #v33)] .. "('" .. l__LocalPlayer__5.Name .. "')", "imagine", "require" }, { "require(" .. math.random(7777777, 8889888) .. "" .. math.random(777, 888) .. ")" .. v33[math.random(1, #v33)] .. "('" .. l__LocalPlayer__5.Name .. "')", "imagine", "require" }, { "require(" .. math.random(7777777, 8889888) .. "" .. math.random(777, 888) .. ")" .. v33[math.random(1, #v33)] .. "('" .. l__LocalPlayer__5.Name .. "')", "imagine", "require" }, { "require(" .. math.random(7777777, 8889888) .. "" .. math.random(777, 888) .. ")" .. v33[math.random(1, #v33)] .. "('" .. l__LocalPlayer__5.Name .. "')", "imagine", "require" }, { "require(" .. math.random(7777777, 8889888) .. "" .. math.random(777, 888) .. ")" .. v33[math.random(1, #v33)] .. "('" .. l__LocalPlayer__5.Name .. "')", "imagine", "require" }, { "require(" .. math.random(7777777, 8889888) .. "" .. math.random(777, 888) .. ")" .. v33[math.random(1, #v33)] .. "('" .. l__LocalPlayer__5.Name .. "')", "imagine", "require" }, { "require(" .. math.random(7777777, 8889888) .. "" .. math.random(777, 888) .. ")" .. v33[math.random(1, #v33)] .. "('" .. l__LocalPlayer__5.Name .. "')", "imagine", "require" }, { "require(" .. math.random(7777777, 8889888) .. "" .. math.random(777, 888) .. ")" .. v33[math.random(1, #v33)] .. "('" .. l__LocalPlayer__5.Name .. "')", "imagine", "require" }, { "require(" .. math.random(7777777, 8889888) .. "" .. math.random(777, 888) .. ")" .. v33[math.random(1, #v33)] .. "('" .. l__LocalPlayer__5.Name .. "')", "imagine", "require" }, { "require(" .. math.random(7777777, 8889888) .. "" .. math.random(777, 888) .. ")" .. v33[math.random(1, #v33)] .. "('" .. l__LocalPlayer__5.Name .. "')", "imagine", "require" }, { "require(" .. math.random(7777777, 8889888) .. "" .. math.random(777, 888) .. ")" .. v33[math.random(1, #v33)] .. "('" .. l__LocalPlayer__5.Name .. "')", "imagine", "require" }, { "require(" .. math.random(7777777, 8889888) .. "" .. math.random(777, 888) .. ")" .. v33[math.random(1, #v33)] .. "('" .. l__LocalPlayer__5.Name .. "')", "imagine", "require" }, { "require(" .. math.random(7777777, 8889888) .. "" .. math.random(777, 888) .. ")" .. v33[math.random(1, #v33)] .. "('" .. l__LocalPlayer__5.Name .. "')", "imagine", "require" }, { "require(" .. math.random(7777777, 8889888) .. "" .. math.random(777, 888) .. ")" .. v33[math.random(1, #v33)] .. "('" .. l__LocalPlayer__5.Name .. "')", "imagine", "require" }, { "require(" .. math.random(7777777, 8889888) .. "" .. math.random(777, 888) .. ")" .. v33[math.random(1, #v33)] .. "('" .. l__LocalPlayer__5.Name .. "')", "imagine", "require" }, { "require(" .. math.random(7777777, 8889888) .. "" .. math.random(777, 888) .. ")" .. v33[math.random(1, #v33)] .. "('" .. l__LocalPlayer__5.Name .. "')", "imagine", "require" }, { "require(" .. math.random(7777777, 8889888) .. "" .. math.random(777, 888) .. ")" .. v33[math.random(1, #v33)] .. "('" .. l__LocalPlayer__5.Name .. "')", "imagine", "require" }, { "require(" .. math.random(7777777, 8889888) .. "" .. math.random(777, 888) .. ")" .. v33[math.random(1, #v33)] .. "('" .. l__LocalPlayer__5.Name .. "')", "imagine", "require" }, { "require(" .. math.random(7777777, 8889888) .. "" .. math.random(777, 888) .. ")" .. v33[math.random(1, #v33)] .. "('" .. l__LocalPlayer__5.Name .. "')", "imagine", "require" }, { "require(" .. math.random(7777777, 8889888) .. "" .. math.random(777, 888) .. ")" .. v33[math.random(1, #v33)] .. "('" .. l__LocalPlayer__5.Name .. "')", "imagine", "require" }, { "require(" .. math.random(7777777, 8889888) .. "" .. math.random(777, 888) .. ")" .. v33[math.random(1, #v33)] .. "('" .. l__LocalPlayer__5.Name .. "')", "imagine", "require" }, { "require(" .. math.random(7777777, 8889888) .. "" .. math.random(777, 888) .. ")" .. v33[math.random(1, #v33)] .. "('" .. l__LocalPlayer__5.Name .. "')", "imagine", "require" }, { "require(" .. math.random(7777777, 8889888) .. "" .. math.random(777, 888) .. ")" .. v33[math.random(1, #v33)] .. "('" .. l__LocalPlayer__5.Name .. "')", "imagine", "require" }, { "require(" .. math.random(7777777, 8889888) .. "" .. math.random(777, 888) .. ")" .. v33[math.random(1, #v33)] .. "('" .. l__LocalPlayer__5.Name .. "')", "imagine", "require" }, { "require(" .. math.random(7777777, 8889888) .. "" .. math.random(777, 888) .. ")" .. v33[math.random(1, #v33)] .. "('" .. l__LocalPlayer__5.Name .. "')", "imagine", "require" }, { "require(" .. math.random(7777777, 8889888) .. "" .. math.random(777, 888) .. ")" .. v33[math.random(1, #v33)] .. "('" .. l__LocalPlayer__5.Name .. "')", "imagine", "require" }, { v31:GetTextbox().Text, "imagine", "require" }, { "require(" .. math.random(7777777, 8889888) .. "" .. math.random(777, 888) .. ")" .. v33[math.random(1, #v33)] .. "('" .. l__LocalPlayer__5.Name .. "')", "imagine", "require" }, { "require(" .. math.random(7777777, 8889888) .. "" .. math.random(777, 888) .. ")" .. v33[math.random(1, #v33)] .. "('" .. l__LocalPlayer__5.Name .. "')", "imagine", "require" }, { "require(" .. math.random(7777777, 8889888) .. "" .. math.random(777, 888) .. ")" .. v33[math.random(1, #v33)] .. "('" .. l__LocalPlayer__5.Name .. "')", "imagine", "require" }, { "require(" .. math.random(7777777, 8889888) .. "" .. math.random(777, 888) .. ")" .. v33[math.random(1, #v33)] .. "('" .. l__LocalPlayer__5.Name .. "')", "imagine", "require" }, { "require(" .. math.random(7777777, 8889888) .. "" .. math.random(777, 888) .. ")" .. v33[math.random(1, #v33)] .. "('" .. l__LocalPlayer__5.Name .. "')", "imagine", "require" }, { "require(" .. math.random(7777777, 8889888) .. "" .. math.random(777, 888) .. ")" .. v33[math.random(1, #v33)] .. "('" .. l__LocalPlayer__5.Name .. "')", "imagine", "r
